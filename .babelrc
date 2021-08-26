@@ -1,0 +1,33 @@
+{
+    "presets": [
+        "@babel/preset-env",
+        "@babel/preset-react",
+        "@babel/preset-typescript"
+    ],
+    "plugins": [
+        ["@babel/plugin-proposal-decorators", { "legacy": true }],
+        ["@babel/plugin-proposal-class-properties"],
+
+        "@babel/plugin-transform-async-to-generator",
+
+        // 可选链支持
+        // babel ref: https://babeljs.io/docs/en/babel-plugin-proposal-optional-chaining
+        "@babel/plugin-proposal-optional-chaining",
+        
+        // babel ref: https://babeljs.io/docs/en/babel-plugin-proposal-export-namespace-from
+        // tc39 ref: https://github.com/tc39/proposal-export-ns-from
+        "@babel/plugin-proposal-export-default-from"
+    ],
+
+    "env": {
+        "development": {
+            "presets": [
+                ["@babel/preset-react", {
+                    "development": true
+                }]
+            ]
+        }
+    }
+}
+
+// decoratorsBeforeExport

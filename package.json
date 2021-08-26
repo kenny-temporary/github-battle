@@ -1,0 +1,92 @@
+{
+  "name": "webpack",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "cross-env NODE_ENV=production DEBUG=false webpack --config ./webpack.config.js",
+    "build:dev": "cross-env NODE_ENV=development DEBUG=true webpack --config ./webpack.config.js",
+    "build:prod": "yarn run build",
+    "start": "cross-env NODE_ENV=development DEBUG=true webpack serve --config ./webpack.config.js",
+    "start:prod": "cross-env NODE_ENV=production DEBUG=false webpack serve --config ./webpack.config.js",
+    "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx,.json src",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx,.json src",
+    "fix:style": "stylelint --fix --aei .css,.less,.scss,sass src",
+    "lint:style": "stylelint --aei .css,.less,.scss,sass src",
+    "rm:dp": "rm -fr node_modules",
+    "rm:dist": "rm -fr dist",
+    "start:dist": "http-server ./dist -o",
+    "deploy": "yarn run rm:dist && yarn run build",
+    "push": "push to github",
+    "prepare": "husky install"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "eslint --ext .js,.jsx,.ts,.tsx,.json src"
+    ],
+    "*.{css,less}": [
+      "stylelint --aei .css,.less,.scss,sass src"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/plugin-proposal-class-properties": "^7.14.5",
+    "@babel/plugin-proposal-decorators": "^7.14.5",
+    "@babel/plugin-proposal-export-default-from": "^7.14.5",
+    "@babel/plugin-proposal-optional-chaining": "^7.14.5",
+    "@babel/preset-env": "^7.15.0",
+    "@babel/preset-react": "^7.14.5",
+    "@babel/preset-typescript": "^7.15.0",
+    "autoprefixer": "^10.3.2",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.2.2",
+    "chalk": "^4.1.2",
+    "clean-webpack-plugin": "4.0.0-alpha.0",
+    "copy-webpack-plugin": "^9.0.1",
+    "cross-env": "^7.0.3",
+    "css-loader": "^6.2.0",
+    "css-minimizer-webpack-plugin": "^3.0.2",
+    "cssnano-preset-advanced": "^5.1.4",
+    "eslint": "^7.32.0",
+    "eslint-friendly-formatter": "^4.0.1",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-watch": "^7.0.0",
+    "html-loader": "^2.1.2",
+    "html-webpack-plugin": "5.3.2",
+    "husky": "^7.0.2",
+    "imagemin-webpack-plugin": "^2.4.2",
+    "less": "^4.1.1",
+    "less-loader": "^10.0.1",
+    "lint-staged": "^11.1.2",
+    "mini-css-extract-plugin": "^2.2.0",
+    "optimize-css-assets-webpack-plugin": "^6.0.1",
+    "postcss": "^8.3.6",
+    "postcss-loader": "^6.1.1",
+    "postcss-preset-env": "^6.7.0",
+    "postcss-short": "^5.0.0",
+    "progress-bar-webpack-plugin": "^2.1.0",
+    "style-loader": "^3.2.1",
+    "stylelint": "^13.13.1",
+    "stylelint-webpack-plugin": "^3.0.1",
+    "terser-webpack-plugin": "^5.1.4",
+    "typescript": "^4.3.5",
+    "url-loader": "^4.1.1",
+    "webpack": "5.51.1",
+    "webpack-cli": "4.8.0",
+    "webpack-dashboard": "^3.3.5",
+    "webpack-dev-server": "4.0.0",
+    "webpack-merge": "5.8.0"
+  },
+  "dependencies": {
+    "core-js": "3",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}
