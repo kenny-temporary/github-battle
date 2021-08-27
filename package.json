@@ -18,7 +18,8 @@
     "start:dist": "http-server ./dist -o",
     "deploy": "yarn run rm:dist && yarn run build",
     "push": "push to github",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "commitmsg": "commitlint -e $GIT_PARAMS"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint --cache --fix",
