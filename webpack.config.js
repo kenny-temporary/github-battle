@@ -27,7 +27,7 @@ const isProd = process.env.NODE_ENV === 'production';
 const isDebug = !!process.env.DEBUG;
 
 
-console.log('================================', isDev, isProd, isDebug);
+console.log(`<<<<------ dev: ${isDev} prdo: ${isProd} debug: ${isDebug} ------>>>`);
 
 module.exports = {
   mode: isDev ? "development" : "production",

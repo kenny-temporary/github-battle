@@ -20,18 +20,15 @@
     "push": "push to github",
     "prepare": "husky install"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "*.{js,jsx}": [
       "eslint --ext .js,.jsx,.ts,.tsx,.json src"
     ],
     "*.{css,less}": [
       "stylelint --aei .css,.less,.scss,sass src"
-    ]
+    ],
+    "*.{js,jsx,ts,tsx,json}": "eslint --cache --fix",
+    "*.css": "stylelint --fix"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
