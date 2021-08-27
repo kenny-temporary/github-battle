@@ -21,14 +21,8 @@
     "prepare": "husky install"
   },
   "lint-staged": {
-    "*.{js,jsx}": [
-      "eslint --ext .js,.jsx,.ts,.tsx,.json src"
-    ],
-    "*.{css,less}": [
-      "stylelint --aei .css,.less,.scss,sass src"
-    ],
-    "*.{js,jsx,ts,tsx,json}": "eslint --cache --fix",
-    "*.css": "stylelint --fix"
+    "src/**/*.{js,jsx,ts,tsx,json}": "yarn run lint",
+    "src/**/*.{css,less,sass,scss}": "yarn run lint:style"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
