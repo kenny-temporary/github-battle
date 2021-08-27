@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+
   "scripts": {
     "build": "cross-env NODE_ENV=production DEBUG=false webpack --config ./webpack.config.js",
     "build:dev": "cross-env NODE_ENV=development DEBUG=true webpack --config ./webpack.config.js",
@@ -16,10 +17,10 @@
     "rm:dp": "rm -fr node_modules",
     "rm:dist": "rm -fr dist",
     "start:dist": "http-server ./dist -o",
-    "deploy": "yarn run rm:dist && yarn run build",
     "publish": "yarn run build && gh-pages -d dist -b deploy",
     "prepare": "husky install"
   },
+
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint --fix",
     "*.css": "stylelint --fix"

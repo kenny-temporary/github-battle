@@ -1,0 +1,4 @@
+theme: jekyll-theme-cayman
+redirects:
+  redirect_to: index.html 
+  try_files: true
