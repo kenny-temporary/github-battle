@@ -1,12 +1,11 @@
 {
-  "plugins": ["react"],
+  "plugins": ["react", "prettier"],
   "parser": "babel-eslint",
   "env": {
     "browser": true,
     "node": true,
     "es6": true
   },
-
   "settings": {
     "react": {
       "version": "detect"
@@ -16,7 +15,8 @@
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:react-hooks/recommended"
+    "plugin:react-hooks/recommended",
+    "plugin:prettier/recommended"
   ],
 
   "parserOptions": {
@@ -37,6 +37,7 @@
         "selector": "CallExpression[callee.object.name='console'][callee.property.name!=/^(log|warn|error|info|trace)$/]",
         "message": "Unexpected property on console object was called"
       }
-    ]
+    ],
+    "prettier/prettier": "error"
   }
 }
