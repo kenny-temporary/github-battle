@@ -32,10 +32,11 @@ module.exports = {
   mode: isDev ? "development" : "production",
   entry: './src/index.js',
   resolve: {
-    extensions: [".js", ".jsx", "ts", ".tsx", ".json", ".css"],
+    extensions: [".js", ".jsx", "ts", ".tsx", ".json"],
     alias: {
       "@": joinPath('src'),
-    }
+    },
+    mainFiles: ["index", "default"]
   },
   output: {
     path: getAbsolutePath('dist'),
@@ -75,6 +76,7 @@ module.exports = {
         parallel: true,
         minimizerOptions: {
           preset: 'advanced',
+          // @ts-ignore
           discardComments: true,
           discardEmpty: true,
           discardDuplicates: true,
@@ -185,6 +187,7 @@ module.exports = {
     }),
     new WebpackDashboardPlugin(),
     new CleanWebpackPlugin(),
+    // @ts-ignore
     new ProgressBarPlugin({
       format: 'build [:bar] ' + chalk.green.bold(':percent') +
         ' (:elapsed seconds)',
@@ -236,7 +239,8 @@ function injectHandleStyleLoader(injectLoader = undefined) {
         },
         import: true,
         modules: {
-          localIdentName: "[local]"
+          localIdentName: "[local]",
+          exportLocalsConvention: "camelCase"
         },
       }
     },

@@ -1,52 +1,40 @@
 import { useState, useCallback, useEffect } from "react";
+import { queryRepositoty as queryRepositotyServer } from "@/services/popular";
 
-const initialState = {
-  repositoties: [],
-  parameters: {},
-  errors: [],
-  loading: false,
-};
-
-function useQueryPopularRepositoty(url = "", initialParameters) {
+function useQueryPopularRepositoty(initialParameters) {
   const [state, setState] = useState({
-    ...initialState,
-    parameters: initialParameters,
+    repositoties: [],
+    language: initialParameters?.language,
+    limit: initialParameters?.limit,
+    offset: initialParameters?.offset,
+    ...initialParameters,
   });
 
-  const queryRepositoty = useCallback(
-    (receiptParameter) => {
-      const params =
-        typeof receiptParameter === "function"
-          ? receiptParameter(state?.parameters)
-          : receiptParameter;
+  const queryRepositoty = useCallback((receiptParameter) => {
+    const params =
+      typeof receiptParameter === "function"
+        ? receiptParameter(state)
+        : receiptParameter;
 
-      // 走上拉逻辑
-      if (
-        params?.language === state?.parameters?.language &&
-        params?.offset > state?.parameters?.offset
-      ) {
-        console.log("上拉加载 --->", state?.parameters, params, url);
-      }
+    console.log("params -->", params);
+    console.log([setState, queryRepositotyServer]);
+    setState({
+      language: params?.language,
+      limit: params?.limit,
+      offset: params,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-      // TODO: request repositoties data
-      const repositoties = [];
-      setState((previous) => ({
-        ...previous,
-        repositoties: repositoties,
-        parameters: params,
-        errors: [],
-      }));
-    },
-    [state?.parameters, url]
-  );
+  useEffect(() => {
+    queryRepositoty(initialParameters);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  const clearRepositoties = () => {
-    setState((previous) => ({ ...previous, ...initialState }));
+  return {
+    ...state,
+    queryRepositoty,
   };
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => queryRepositoty(initialParameters), []);
-  return { ...state, queryRepositoty, clearRepositoties };
 }
 
 export default useQueryPopularRepositoty;

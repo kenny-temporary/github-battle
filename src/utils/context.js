@@ -16,6 +16,10 @@ class Context {
     this.startegies.has(name) && this.startegies.get(name)?.processor(...args);
   }
 
+  getContext(name) {
+    return this.startegies.get(name);
+  }
+
   _register(startegy) {
     this.startegies.set(startegy.name, startegy);
   }
@@ -25,9 +29,9 @@ class Context {
       throw new Error("invalid name: " + startegy.name);
     }
 
-    if (!startegy.processor || typeof startegy.processor !== "function") {
-      throw new Error("invalid processor: " + startegy.processor);
-    }
+    // if (!startegy.processor || typeof startegy.processor !== "function") {
+    //   throw new Error("invalid processor: " + startegy.processor);
+    // }
 
     return true;
   }

@@ -1,29 +1,20 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import Container from "react-bootstrap/Container";
+import classnames from "classnames";
+import style from "./index.less";
 
 export default function Nav() {
   return (
-    <ul>
-      <li>
-        <NavLink
-          to="/"
-          exact
-          activeStyle={{ color: "red" }}
-          className="nav-link"
-        >
+    <Container className="mt-5">
+      <div className={classnames("d-flex my-2", style.navLinkContainer)}>
+        <NavLink to="/" exact activeStyle={{ color: "rgb(187, 46, 31)" }}>
           Popular
         </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/battle"
-          exact
-          activeStyle={{ color: "red" }}
-          className="nav-link"
-        >
+        <NavLink to="/battle" exact activeStyle={{ color: "rgb(187, 46, 31)" }}>
           Battle
         </NavLink>
-      </li>
-    </ul>
+      </div>
+    </Container>
   );
 }

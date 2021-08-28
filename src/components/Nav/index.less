@@ -1,0 +1,20 @@
+@import url("../../common/utils.less");
+@import url("../../common/var.less");
+
+.nav-link-container {
+    .clear-m-p;
+
+    & > a {
+        display: block;
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-right: 1rem;
+
+        &:hover,
+        &:visited,
+        &:link,
+        &:active {
+            color: @anchor-black-color-10;
+        }
+    }
+}

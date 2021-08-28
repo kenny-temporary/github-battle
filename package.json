@@ -29,6 +29,7 @@
     "@babel/plugin-proposal-decorators": "^7.14.5",
     "@babel/plugin-proposal-export-default-from": "^7.14.5",
     "@babel/plugin-proposal-optional-chaining": "^7.14.5",
+    "@babel/plugin-transform-async-to-generator": "^7.14.5",
     "@babel/preset-env": "^7.15.0",
     "@babel/preset-react": "^7.14.5",
     "@babel/preset-typescript": "^7.15.0",
@@ -36,6 +37,7 @@
     "autoprefixer": "^10.3.2",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.2",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "chalk": "^4.1.2",
     "clean-webpack-plugin": "4.0.0-alpha.0",
     "copy-webpack-plugin": "^9.0.1",
@@ -80,10 +82,15 @@
     "webpack-merge": "5.8.0"
   },
   "dependencies": {
+    "ahooks": "^2.10.9",
     "axios": "^0.21.1",
+    "bootstrap": "5.1.0",
+    "classnames": "^2.3.1",
     "core-js": "3",
     "react": "^17.0.2",
+    "react-bootstrap": "^2.0.0-beta.6",
     "react-dom": "^17.0.2",
+    "react-infinite-scroll-component": "^6.1.0",
     "react-router-dom": "^5.2.0"
   }
 }
