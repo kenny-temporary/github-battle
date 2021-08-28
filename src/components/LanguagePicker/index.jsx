@@ -15,7 +15,7 @@ function LanguagePicker(props) {
 
   return (
     <Container>
-      <ul className="d-flex justify-content-center">
+      <ul className="d-flex justify-content-center flex-wrap">
         {languages?.map((language) => (
           <li
             key={language}
