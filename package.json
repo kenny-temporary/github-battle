@@ -16,7 +16,7 @@
     "rm:dp": "rm -fr node_modules",
     "rm:dist": "rm -fr dist",
     "start:dist": "http-server ./dist -o",
-    "publish": "yarn run build && gh-pages -d dist -b deploy",
+    "publish": "npm run rm:dist && yarn run build && gh-pages -d dist -b deploy",
     "prepare": "husky install"
   },
   "lint-staged": {

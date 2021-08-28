@@ -1,17 +1,15 @@
 /* eslint-disable */
-const path = require('path');
-const webpack = require('webpack');
-const chalk = require('chalk');
+const path = require("path");
+const webpack = require("webpack");
+const chalk = require("chalk");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const {
-  CleanWebpackPlugin
-} = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const WebpackDashboardPlugin = require("webpack-dashboard/plugin");
-const ProgressBarPlugin = require('progress-bar-webpack-plugin');
+const ProgressBarPlugin = require("progress-bar-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
-const StylelintPlugin = require('stylelint-webpack-plugin');
+const StylelintPlugin = require("stylelint-webpack-plugin");
 
 function getAbsolutePath(...paths) {
   return path.resolve(__dirname, ...paths);
@@ -21,25 +19,26 @@ function joinPath(...paths) {
   return path.join(__dirname, ...paths);
 }
 
-const isDev = process.env.NODE_ENV === 'development';
-const isProd = process.env.NODE_ENV === 'production';
+const isDev = process.env.NODE_ENV === "development";
+const isProd = process.env.NODE_ENV === "production";
 const isDebug = !!process.env.DEBUG;
 
-
-console.log(`<<<<------ dev: ${isDev} prdo: ${isProd} debug: ${isDebug} ------>>>`);
+console.log(
+  `<<<<------ dev: ${isDev} prdo: ${isProd} debug: ${isDebug} ------>>>`
+);
 
 module.exports = {
   mode: isDev ? "development" : "production",
-  entry: './src/index.js',
+  entry: "./src/index.js",
   resolve: {
     extensions: [".js", ".jsx", "ts", ".tsx", ".json"],
     alias: {
-      "@": joinPath('src'),
+      "@": joinPath("src"),
     },
-    mainFiles: ["index", "default"]
+    mainFiles: ["index", "default"],
   },
   output: {
-    path: getAbsolutePath('dist'),
+    path: getAbsolutePath("dist"),
 
     pathinfo: true,
     clean: true,
@@ -47,7 +46,7 @@ module.exports = {
     // chunkhash 上效缓存(/guides/caching)
     // fullhash
     // contenthash
-    filename: './js/[name]_[chunkhash:8].js', // 我需要和map匹配暂时选择chunkhash
+    filename: "./js/[name]_[chunkhash:8].js", // 我需要和map匹配暂时选择chunkhash
     chunkFilename: "./js/[name]_[chunkhash:8]_chunk.js",
 
     // sourceMap
@@ -67,7 +66,7 @@ module.exports = {
   // devtool: isDev && isDebug ? "source-map" : false,
 
   context: __dirname,
-  target: 'web',
+  target: "web",
 
   optimization: {
     minimizer: [
@@ -75,15 +74,24 @@ module.exports = {
       new CssMinimizerPlugin({
         parallel: true,
         minimizerOptions: {
-          preset: 'advanced',
+          preset: "advanced",
           // @ts-ignore
           discardComments: true,
           discardEmpty: true,
           discardDuplicates: true,
           minifyParams: true,
-        }
-      })
-    ]
+        },
+      }),
+    ],
+  },
+
+  performance: {
+    hints: "error",
+    maxEntrypointSize: 1000000,
+    maxAssetSize: 200000,
+    assetFilter: function (assetFilename) {
+      return assetFilename.endsWith(".js");
+    },
   },
 
   // ref: https://webpack.js.org/configuration/stats/#root
@@ -110,30 +118,34 @@ module.exports = {
     dependentModules: false,
   },
 
-  cache: isDev ? {
-    type: "filesystem",
-    cacheDirectory: getAbsolutePath(".tempcache"),
-    compression: 'gzip',
-  } : false,
+  cache: isDev
+    ? {
+        type: "filesystem",
+        cacheDirectory: getAbsolutePath(".tempcache"),
+        compression: "gzip",
+      }
+    : false,
 
   module: {
-    rules: [{
+    rules: [
+      {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         use: ["babel-loader"],
       },
       {
         test: /\.jsx?$/,
-        loader: 'eslint-loader',
+        loader: "eslint-loader",
         enforce: "pre",
         include: [getAbsolutePath("src")],
-        options: { // 这里的配置项参数将会被传递到 eslint 的 CLIEngine 
-          formatter: require('eslint-friendly-formatter')
-        }
+        options: {
+          // 这里的配置项参数将会被传递到 eslint 的 CLIEngine
+          formatter: require("eslint-friendly-formatter"),
+        },
       },
       {
         test: /\.html$/i,
-        loader: "html-loader"
+        loader: "html-loader",
       },
       {
         test: /\.css$/,
@@ -145,23 +157,25 @@ module.exports = {
       },
       {
         test: /\.(jpg|png|gif|bmp|jpeg)$/,
-        use: [{
-          loader: "url-loader",
-          options: {
-            limit: 8000,
-            name: "./asset/images/[name]_[chunkhash:8].[ext]"
-          }
-        }]
+        use: [
+          {
+            loader: "url-loader",
+            options: {
+              limit: 8000,
+              name: "./asset/images/[name]_[chunkhash:8].[ext]",
+            },
+          },
+        ],
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        loader: 'url-loader',
+        loader: "url-loader",
         options: {
           limit: false,
-          name: './asset/fonts/[name]_[chunkhash:8].[ext]'
-        }
+          name: "./asset/fonts/[name]_[chunkhash:8].[ext]",
+        },
       },
-    ]
+    ],
   },
 
   plugins: [
@@ -172,12 +186,12 @@ module.exports = {
     //     to: getAbsolutePath('dist/assets'),
     //   }]
     // }),
-    new StylelintPlugin(joinPath('postcss.config.js')),
+    new StylelintPlugin(joinPath("postcss.config.js")),
     new MiniCssExtractPlugin({
-      filename: "./styles/[name]_[chunkhash:8].css"
+      filename: "./styles/[name]_[chunkhash:8].css",
     }),
     new HtmlWebpackPlugin({
-      filename: 'index.html',
+      filename: "index.html",
       template: joinPath("public", "index.html"),
       title: "通用Web站点",
       minify: true,
@@ -189,8 +203,8 @@ module.exports = {
     new CleanWebpackPlugin(),
     // @ts-ignore
     new ProgressBarPlugin({
-      format: 'build [:bar] ' + chalk.green.bold(':percent') +
-        ' (:elapsed seconds)',
+      format:
+        "build [:bar] " + chalk.green.bold(":percent") + " (:elapsed seconds)",
       clear: true,
     }),
     new webpack.HotModuleReplacementPlugin(),
@@ -199,7 +213,7 @@ module.exports = {
   devServer: {
     liveReload: true,
     static: {
-      directory: joinPath('dist'),
+      directory: joinPath("dist"),
       watch: true,
     },
     client: {
@@ -214,18 +228,20 @@ module.exports = {
     open: true,
     host: "127.0.0.1",
     port: 3000,
-  }
+  },
 };
 
 function injectHandleStyleLoader(injectLoader = undefined) {
   return [
-    isDev ? {
-      loader: 'style-loader',
-      options: {
-        injectType: "styleTag",
-        esModule: true,
-      }
-    } : MiniCssExtractPlugin.loader,
+    isDev
+      ? {
+          loader: "style-loader",
+          options: {
+            injectType: "styleTag",
+            esModule: true,
+          },
+        }
+      : MiniCssExtractPlugin.loader,
     {
       loader: "css-loader",
       options: {
@@ -240,11 +256,11 @@ function injectHandleStyleLoader(injectLoader = undefined) {
         import: true,
         modules: {
           localIdentName: "[local]",
-          exportLocalsConvention: "camelCase"
+          exportLocalsConvention: "camelCase",
         },
-      }
+      },
     },
     "postcss-loader",
-    injectLoader
-  ].filter(Boolean)
+    injectLoader,
+  ].filter(Boolean);
 }
