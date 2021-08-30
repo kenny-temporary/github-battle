@@ -1,4 +1,11 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faUser,
+  faStar,
+  faCodeBranch,
+  faCode,
+} from "@fortawesome/free-solid-svg-icons";
 import BootStrapCard from "react-bootstrap/Card";
 import AnchorBlank from "./AnchorBlank";
 import style from "./card.less";
@@ -21,15 +28,24 @@ export default function RepositotyDescription({ item }) {
       </li>
 
       <li className="mb-4 pb-4 repositoty-subtext">
-        <div>
+        <div className={style.descriptionItem}>
+          <FontAwesomeIcon icon={faUser} color="rgb(255, 191, 136)" />
           <AnchorBlank to={item?.owner?.html_url} className={style.authorName}>
             {item?.owner.login}
           </AnchorBlank>
         </div>
-
-        <div>{item?.stargazers_count} stars</div>
-        <div>{item?.forks_count} forks</div>
-        <div>{item?.open_issues_count} open issues</div>
+        <div className={style.descriptionItem}>
+          <FontAwesomeIcon icon={faStar} color="rgb(255, 215, 0)" />
+          <span>{item?.stargazers_count} stars</span>
+        </div>
+        <div className={style.descriptionItem}>
+          <FontAwesomeIcon icon={faCodeBranch} color="rgb(129, 194, 245)" />
+          <span>{item?.forks_count} forks</span>
+        </div>
+        <div className={style.descriptionItem}>
+          <FontAwesomeIcon icon={faCode} color="rgb(241, 138, 147)" />
+          <span>{item?.open_issues_count} open issues</span>
+        </div>
       </li>
     </ul>
   );

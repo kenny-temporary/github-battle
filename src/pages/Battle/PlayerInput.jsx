@@ -6,6 +6,9 @@ export default function PlayerFrom({
   placeholder,
   onChange,
   value,
+  className = "",
+  style = {},
+  events = {},
 }) {
   return (
     <input
@@ -15,6 +18,9 @@ export default function PlayerFrom({
       placeholder={placeholder || ""}
       onChange={(event) => onChange && onChange(event.target?.value, event)}
       autoComplete="off"
+      className={className}
+      style={style}
+      {...events}
     />
   );
 }

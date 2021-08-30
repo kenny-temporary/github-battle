@@ -86,7 +86,7 @@ module.exports = {
   },
 
   performance: {
-    hints: "error",
+    hints: isProd ? "error": false,
     maxEntrypointSize: 1000000,
     maxAssetSize: 200000,
     assetFilter: function (assetFilename) {
