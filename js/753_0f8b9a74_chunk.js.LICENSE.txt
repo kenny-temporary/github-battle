@@ -1,0 +1,16 @@
+/*!
+ * Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com
+ * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+ */
+
+/*!*****************************************************************!*\
+  !*** ./node_modules/ahooks/es/useSetState/index.js + 1 modules ***!
+  \*****************************************************************/
+
+/*!********************************************************************!*\
+  !*** ./node_modules/@fortawesome/free-solid-svg-icons/index.es.js ***!
+  \********************************************************************/
+
+/*!*****************************************************************************!*\
+  !*** ./node_modules/@fortawesome/react-fontawesome/index.es.js + 1 modules ***!
+  \*****************************************************************************/
