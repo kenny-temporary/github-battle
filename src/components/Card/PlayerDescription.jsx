@@ -25,11 +25,22 @@ export default function PlayerDescription({ item }) {
       </li>
 
       <li className="mb-4 pb-4 repositoty-subtext">
-        <div>{item?.name}</div>
-        <div>{item?.location}</div>
-        <div>{item?.company}</div>
-        <div>{item?.followers} followers</div>
-        <div>{item?.following} following</div>
+        <div>
+          <i className="fa fa-user orange-icon"></i>
+          {item?.name}
+        </div>
+        <div>
+          <i className="fa fa-star yellow-icon"></i>
+          {item?.location}
+        </div>
+        <div>
+          <i className="fa fa-download blue-icon"></i>
+          {item?.followers} followers
+        </div>
+        <div>
+          <i className="fa fa-exclamation-triangle orangered-icon"></i>
+          {item?.following} following
+        </div>
       </li>
     </ul>
   );

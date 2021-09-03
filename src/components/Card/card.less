@@ -1,56 +1,77 @@
-@import url('../../common/utils.less');
+@import url("../../common/utils.less");
 @import url("../../common/var.less");
 
 .set-card-title {
-    font-size: 2rem;
-    font-weight: 300;
+  font-size: 2rem;
+  font-weight: 300;
 }
 
-.clear-ul-mp { 
-    .clear-m-p;
+.clear-ul-mp {
+  .clear-m-p;
 }
 .bg-light {
-   background-color: @light-color !important;
+  background-color: @light-color !important;
 }
 
 .clear-card {
-    .clear-border;
+  .clear-border;
 }
 
 .repositoty-name {
-    word-break: break-all;
-    white-space: pre-wrap;
-    color: @anchor-red-color-10;
-    font-size: 1.2rem;
-    font-weight: bold;
+  word-break: break-all;
+  white-space: pre-wrap;
+  color: @anchor-red-color-10;
+  font-size: 1.2rem;
+  font-weight: bold;
 
-    &:hover,
-    &:visited,
-    &:link,
-    &:active {
-        color: @anchor-red-color-10;
-    }
+  &:hover,
+  &:visited,
+  &:link,
+  &:active {
+    color: @anchor-red-color-10;
+  }
 }
 
 .repositoty-subtext {
-    font-size: 1.25rem;
-    font-weight: 400;
+  font-size: 1.25rem;
+  font-weight: 400;
+
+  div {
+    display: grid;
+    grid-template-columns: 1.6fr 8.4fr;
+    margin-left: 1rem;
+  }
+}
+
+.orange-icon {
+  color: rgb(255, 191, 116);
+}
+.yellow-icon {
+  color: rgb(255, 215, 0);
+}
+
+.blue-icon {
+  color: rgb(129, 195, 245);
+}
+
+.orangered-icon {
+  color: rgb(241, 138, 147);
 }
 
 .author-name {
-    color: @anchor-black-color-10;
-    font-weight: 500;
+  color: @anchor-black-color-10;
+  font-weight: 500;
 
-    &:hover,
-    &:visited,
-    &:link,
-    &:active {
-        color: @anchor-black-color-10;
-    }
+  &:hover,
+  &:visited,
+  &:link,
+  &:active {
+    color: @anchor-black-color-10;
+  }
 }
 
 .description-item {
-    display: grid;
-    grid-template-columns: 1.4fr 8.6fr;
-    margin-left: 20px;
+  display: grid;
+  grid-template-columns: 1.4fr 8.6fr;
+  margin-left: 20px;
 }
