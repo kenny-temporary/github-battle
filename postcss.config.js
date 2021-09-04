@@ -1,11 +1,12 @@
 module.exports = {
   plugins: [
     [
-      'postcss-short', {
-        prefix: 'x'
-      }
+      "postcss-short",
+      {
+        prefix: "x",
+      },
     ],
-    'postcss-preset-env',
-    "autoprefixer"
+    "postcss-preset-env",
+    "autoprefixer",
   ],
-}
+};
