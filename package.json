@@ -21,7 +21,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint --fix",
-    "*.css": "stylelint --fix"
+    "*.{css,less,scss,sass}": "stylelint --fix"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",

@@ -13,7 +13,7 @@
         // 可选链支持
         // babel ref: https://babeljs.io/docs/en/babel-plugin-proposal-optional-chaining
         "@babel/plugin-proposal-optional-chaining",
-        
+
         // babel ref: https://babeljs.io/docs/en/babel-plugin-proposal-export-namespace-from
         // tc39 ref: https://github.com/tc39/proposal-export-ns-from
         "@babel/plugin-proposal-export-default-from"
