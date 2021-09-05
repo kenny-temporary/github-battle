@@ -1,13 +1,12 @@
-function throttle(fn, delay) {
-  let prev = Date.now();
-  return function () {
-    const context = this,
-      args = arguments;
-    let now = Date.now();
-    console.log(now, prev);
-    if (now - prev >= delay) {
-      fn.call(context, args);
-      prev = now;
+let isRuning = false;
+function throttle(fn, wait) {
+  return function handler() {
+    if (isRuning) {
+      return;
+    } else {
+      isRuning = true;
+      fn(...arguments);
+      setTimeout(() => (isRuning = false), wait);
     }
   };
 }
